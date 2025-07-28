@@ -1,1 +1,23 @@
-raw_data/
+.env
+.python-version
+
+# OS generated files #
+######################
+.DS_Store
+__MACOSX
+# Jupiter Notebook #
+.pytest_cache
+__pycache__
+*.ipynb_checkpoints
+
+# inteliJ #
+.idea
+*.gz
+*PKG-INFO
+*.egg-info
+*.zip
+mlruns
+*.sqlite
+
+# IDE #
+*.vscode
