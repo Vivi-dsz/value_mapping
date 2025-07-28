@@ -9,3 +9,6 @@ matplotlib
 seaborn
 scikit-learn
 nltk
+pandas
+os
+sys
