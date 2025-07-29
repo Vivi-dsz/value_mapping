@@ -21,3 +21,5 @@ mlruns
 
 # IDE #
 *.vscode
+.env
+.env
