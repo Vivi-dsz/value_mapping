@@ -11,3 +11,4 @@ scikit-learn
 nltk
 fastapi
 uvicorn
+google_play_scraper
