@@ -12,7 +12,7 @@ stop_words = set(stopwords.words('english'))
 def clean_and_tokenize(raw_text: str) -> str:
     """
     Clean Brand's 'About Us' text.
-    Cleans the input text and returns both:
+    Clean the input text and returns both:
     - cleaned text (str)
     - tokenized list of words (List[str])
     """
@@ -29,12 +29,11 @@ def clean_and_tokenize(raw_text: str) -> str:
     text = re.sub(r'[^a-z0-9\s]', '', text)   # Removes special charachters, keeps only alphabet, digit, and spaces
     text = re.sub(r'<[^>]+>', '', text)       # Remove html <>
 
-    text = text.strip()
+    clean_text = text.strip()
 
     # Tockenizing the text
     tockenized_text = word_tokenize(text)
-
     # Remove stopwords
     filtered_tokens = [word for word in tockenized_text if word not in stop_words]
 
-    return filtered_tokens
+    return clean_text, filtered_tokens
