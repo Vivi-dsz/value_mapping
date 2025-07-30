@@ -12,3 +12,4 @@ nltk
 pandas
 os
 sys
+openai
