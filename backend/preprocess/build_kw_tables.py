@@ -1,7 +1,7 @@
 import pandas as pd
 from backend.preprocess.kw_counter import count_kw_in_tokens
 from backend.preprocess.data_prep import clean_and_tokenize
-from data.raw.brands_about_us import brands_text
+from data.raw.brands_about_us import brand_text
 
 keywords = [
     "ambition", "digital", "disruption", "diversity", "efficiency",
@@ -16,7 +16,7 @@ keywords_set = set(kw.lower() for kw in keywords)
 
 rows=[]
 
-for brand, raw_text in brands_text.items():
+for brand, raw_text in brand_text.items():
     _, tokens = clean_and_tokenize(raw_text)
 
     kw_counts = count_kw_in_tokens(tokens, keywords_set)
