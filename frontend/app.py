@@ -19,7 +19,7 @@ if submit:
         'user_review': user_review,
     }
     response = requests.get(url, params=params).json()
-    st.success(f"Predicted Review Topic {str(response["prediction"])}")
+    st.success(f"Predicted Review Topic {response["prediction"]}")
 
 
 #### Following code is for using with the dummy.py function
