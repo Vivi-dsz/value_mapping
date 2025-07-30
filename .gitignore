@@ -23,3 +23,6 @@ mlruns
 *.vscode
 .env
 .env
+.env
+notebooks/data_preprocessing_Copy_tokeep.ipynb
+notebooks/for_me.ipynb
