@@ -13,3 +13,5 @@ fastapi
 uvicorn
 google_play_scraper
 openai
+transformers
+torch
