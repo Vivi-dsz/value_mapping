@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import json
 
  # Change this URL to the one of your API
-API_URL = "https://mvp-186737174934.europe-west10.run.app"
+API_URL = "https://mvppredict-186737174934.europe-west10.run.app"
 
 st.title("Our awesome MVP")
 
@@ -21,7 +21,8 @@ if submit:
         'bankname': bank_name,
         'user_review': user_review,
     }
-    response = requests.get(url, params=params).json()#
+    response = requests.get(url, params=params).json()
+    print(response)
     topic = response['prediction']
     st.success(f"Predicted Review Topic **{topic}**")
 
