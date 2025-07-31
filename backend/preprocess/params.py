@@ -2,6 +2,7 @@ import os
 
 api_key = os.getenv("API_KEY")
 
+# check https://docs.google.com/spreadsheets/d/15KFT2CPiXi74_9S1lg_uW75AcC2PkPM-mgVacItolO4/edit?gid=0#gid=0
 values_keywords = {"quality": ["product quality", "speed", "accessibility", "reliability", "aesthetics", "helpful",
                         "efficiency", "convenience", "flexibility", "stability", "functional", "affordable", "valuable"],
            "innovation": ["digital", "innovation", "technology", "automation", "disruption",
