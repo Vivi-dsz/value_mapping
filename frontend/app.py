@@ -11,7 +11,7 @@ st.title("Our awesome MVP")
 url = f"{API_URL}/predict"
 
 with st.form("predict"):
-    bank_name = st.selectbox('Which bank would you like to analyze?',
+    bank_name = st.selectbox('Which bank are you using?',
                              ("Bunq", "Revolut", "Traderepublic", "Klarna", "N26"))
     user_review = st.text_input("Please write your review")
     submit = st.form_submit_button("Predict 🚀")
