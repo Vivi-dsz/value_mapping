@@ -1,7 +1,7 @@
 import openai
 from backend.preprocess.params import *
 
-client = openai.OpenAI(api_key=api_key)
+client = openai.OpenAI(api_key=openai_api_key)
 
 def get_topic_from_openai_constrained(review_text, values_keywords):
     """
