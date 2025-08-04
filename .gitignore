@@ -22,7 +22,7 @@ mlruns
 # IDE #
 *.vscode
 
-#preprocessed data
-data/preprocessed/
 
 kw_counter.ipynb
+/archive/
+agents.ipynb
