@@ -39,7 +39,7 @@ You are clear, confident, and helpful — like a brand strategist with insight f
 """
 
 
-supported_brands = ["Klarna", "N26", "Revolut", "TradeRepublic", "Bunq"]
+supported_brands = ["Klarna", "N26", "Revolut", "Trade Republic", "Bunq"]
 
 def extract_brand_names(text: str, brand_list=None):
     if brand_list is None:
