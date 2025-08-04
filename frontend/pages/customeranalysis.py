@@ -2,7 +2,8 @@ import streamlit as st
 from modules.navbar import navbar
 
 
-def main():
+def customeranalysis():
+    st.session_state.update(st.session_state)
     navbar()
 
     st.set_page_config(
@@ -19,4 +20,4 @@ def main():
     )
 
 if __name__ == '__main__':
-    main()
+    customeranalysis()

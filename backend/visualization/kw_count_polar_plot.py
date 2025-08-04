@@ -3,8 +3,7 @@ import pandas as pd
 import numpy as np
 
 def kw_count_polar_plot(df, kw_dict, brand_text,
-                        brand_name_list: list,
-                        color_scale=px.colors.qualitative.G10):
+                        brand_name_list: list):
 
     selected_df = df[df['brand'].isin(brand_name_list)].reset_index(drop=True)
 
@@ -33,7 +32,9 @@ def kw_count_polar_plot(df, kw_dict, brand_text,
                     theta='category',
                     color='brand',
                     line_close=True,
-                    color_discrete_sequence=color_scale,
+                    color_discrete_map={'Klarna': '#990099', 'N26': '#109618',
+                                        'Trade Republic': '#DC3912',
+                                        'Bunq': '#3366CC', 'Revolut': '#FF9900'},
                     range_theta=[0,360], start_angle=0)
                     #width=800,height=800)
 
@@ -47,17 +48,27 @@ def kw_count_polar_plot(df, kw_dict, brand_text,
     fig.update_layout(
         template=None,
         polar = dict(
-            radialaxis = dict(showticklabels=False, ticks='', showline=False),
+            radialaxis = dict(showticklabels=False, ticks='', showline=False, range=[0,45], showgrid=False),
             angularaxis = dict(labelalias={'quality_usability': 'quality<br>usability',
-                                           'innovation_technology': 'innovation<br>technology',
-                                           'trust_ethics': 'trust<br>ethics',
-                                           'empowerment_control': 'empowerment<br>control',
-                                           'user_centricity_support': 'user centricity<br>support',
-                                           'community_belonging': 'community<br>belonging',
-                                           'growth_ambition': 'growth<br>ambition'})
+                                        'innovation_technology': 'innovation<br>technology',
+                                        'trust_ethics': 'trust<br>ethics',
+                                        'empowerment_control': 'empowerment<br>control',
+                                        'user_centricity_support': 'user centricity<br>support',
+                                        'community_belonging': 'community<br>belonging',
+                                        'growth_ambition': 'growth<br>ambition'},
+                            categoryarray=['empowerment_control', 'trust_ethics', 'innovation_technology', 'quality_usability',
+                                            'growth_ambition', 'community_belonging', 'user_centricity_support'],
+                            direction='counterclockwise')
+        ),
+        legend=dict(
+        orientation="v",
+        yanchor="top",
+        y=1.1,
+        xanchor="left",
+        x=1.0
         )
     )
     fig.update_traces(fill='toself')
-    fig.update_polars(bgcolor='lightgray')
+    fig.update_polars(bgcolor='white')
 
     return fig
