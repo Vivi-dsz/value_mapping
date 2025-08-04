@@ -2,8 +2,13 @@ import plotly.express as px
 import pandas as pd
 import numpy as np
 
-def kw_count_polar_plot(df, kw_dict, brand_text, color_scale=px.colors.qualitative.G10):
-    groupdf = df.groupby(['category', 'brand']).agg({'count':'sum'}).reset_index()
+def kw_count_polar_plot(df, kw_dict, brand_text,
+                        brand_name_list: list,
+                        color_scale=px.colors.qualitative.G10):
+
+    selected_df = df[df['brand'].isin(brand_name_list)].reset_index(drop=True)
+
+    groupdf = selected_df.groupby(['category', 'brand']).agg({'count':'sum'}).reset_index()
 
     modgroupdf = pd.DataFrame()
     for cat in kw_dict.keys():
@@ -29,15 +34,27 @@ def kw_count_polar_plot(df, kw_dict, brand_text, color_scale=px.colors.qualitati
                     color='brand',
                     line_close=True,
                     color_discrete_sequence=color_scale,
-                    range_theta=[0,360], start_angle=0,
-                    width=800,
-                    height=800)
+                    range_theta=[0,360], start_angle=0)
+                    #width=800,height=800)
+
+    if len(brand_name_list) == 1:
+        fig.update_layout(showlegend=False)
+
+    for trace in fig['data']:
+        if (not trace['name'] in brand_name_list):
+            trace['showlegend'] = False
 
     fig.update_layout(
         template=None,
         polar = dict(
             radialaxis = dict(showticklabels=False, ticks='', showline=False),
-            #angularaxis = dict(showticklabels=False, ticks='')
+            angularaxis = dict(labelalias={'quality_usability': 'quality<br>usability',
+                                           'innovation_technology': 'innovation<br>technology',
+                                           'trust_ethics': 'trust<br>ethics',
+                                           'empowerment_control': 'empowerment<br>control',
+                                           'user_centricity_support': 'user centricity<br>support',
+                                           'community_belonging': 'community<br>belonging',
+                                           'growth_ambition': 'growth<br>ambition'})
         )
     )
     fig.update_traces(fill='toself')
