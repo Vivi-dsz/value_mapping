@@ -6,12 +6,21 @@ sys.path.append(rootpath)
 
 from frontend.modules.navbar import navbar
 from frontend.modules.companydesc import companydesc
+from frontend.modules.brandinfo import brand_analysis_info
 from backend.visualization.get_kw_count_df import get_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
 from data.raw.brands_about_us import brand_text
 from backend.visualization.kw_count_polar_plot import kw_count_polar_plot
 
-def main():
+def refresh_competitors():
+    brand_name = st.session_state['chosen_brand']
+    allbrands = ["Bunq", "Revolut", "Trade Republic", "Klarna", "N26"]
+    competitors = [x for x in allbrands if x != brand_name]
+    st.session_state['chosen_competitors'] = competitors
+
+def brandanalysis():
+    st.session_state.update(st.session_state)
+
     navbar()
 
     st.set_page_config(
@@ -26,9 +35,10 @@ def main():
     left_top, gap, right_top, gap_2 = st.columns([2, 1, 4, 1], vertical_alignment="top")
 
     with left_top:
-        brand_name = st.selectbox('Which company would you like to analyze?',
-                                ("Bunq", "Revolut", "Trade Republic", "Klarna", "N26"),
-                                index=None, placeholder="Choose your company")
+        brand_name = st.selectbox('Which company would you like to analyze?', key='chosen_brand',
+                                options=("Bunq", "Revolut", "Trade Republic", "Klarna", "N26"),
+                                index=None, placeholder="Choose your company",
+                                on_change=refresh_competitors)
 
     with right_top:
         if brand_name is not None:
@@ -36,10 +46,11 @@ def main():
 
     st.subheader("Your brand's positioning")
 
-    left_bottom, gap_3, right_bottom, gap_4 = st.columns([4, 1, 4, 1], vertical_alignment="top")
+    left_bottom, gap_3, right_bottom = st.columns([5, 0.5, 4.5], vertical_alignment="top")
 
     with left_bottom:
         if brand_name is not None:
+
             df = get_kw_count_df(kw_dict, brand_text)
 
             brand_name_list = []
@@ -51,11 +62,14 @@ def main():
 
     with right_bottom:
         if brand_name is not None:
-            st.write("Analysis of brand's positioning")
+            st.subheader("Analysis of brand's positioning")
 
-            selected_df = df[df['brand'] == brand_name].reset_index(drop=True)
+            #selected_df = df[df['brand'] == brand_name].reset_index(drop=True)
+            #pivot_table = selected_df.pivot_table(values='count', index=['category', 'keyword'], columns='brand', aggfunc='sum')
+            #pivot_table[pivot_table.columns] = pivot_table[pivot_table.columns].fillna(0).astype(int)
+            #st.dataframe(pivot_table)
 
-            st.dataframe(selected_df.groupby(['category', 'keyword']).agg({'count':'sum'}))
+            st.markdown(brand_analysis_info[brand_name])
 
 if __name__ == '__main__':
-    main()
+    brandanalysis()

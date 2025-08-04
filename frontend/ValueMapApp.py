@@ -1,9 +1,22 @@
 import streamlit as st
-from modules.navbar import navbar
+from pages.welcome import welcome
+from pages.brandanalysis import brandanalysis
+from pages.companalysis import companalysis
+from pages.customeranalysis import customeranalysis
+from pages.chatbot import chatbot
 
 
 def main():
-    navbar()
+    st.session_state.update(st.session_state)
+
+    #--- Initialize session_state
+    if 'active_page' not in st.session_state:
+        st.session_state.active_page = 'Welcome'
+        st.session_state['chosen_brand'] = None
+
+    # Get current values of states
+    st.session_state.active_page = st.session_state.active_page
+    st.session_state['chosen_brand'] = st.session_state['chosen_brand']
 
     st.set_page_config(
         page_title="Value Mapping",
@@ -12,41 +25,17 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    "# Brand Value Mapping Tool"
-
-    """An automated brand, competitor and customer analysis serving as a fundament
-    for all brand strategies - positioning, marketing, design and communication."""
-
-    with st.popover("What is value-based brand strategy?"):
-        st.markdown("Hello World 👋")
-
-    left, center, right = st.columns(3)
-
-    with left:
-        st.subheader("Brand Analysis")
-
-        """
-        By classifying the core values your brand communicates -
-        whether via advertising, website content, or product messaging -
-        it becomes possible to identify and visualize the brands communicative positioning.
-        """
-
-    with center:
-        st.subheader("Competitor Analysis")
-
-        """
-        Compare your brand to your competitors to find strategic competitive
-        overlaps or white-space opportunities enabling data-informed brand differentiation.
-        """
-
-    with right:
-        st.subheader("Target Group Analysis")
-
-        """
-        Overlay consumer value profiles with your brand’s communicative values
-        to detect value misalignments or missed opportunities. This enables you
-        to tailor content and messaging to resonate more deeply and enable targeted campaign planning.
-        """
+    #--- Run the active page
+    if st.session_state.active_page == 'Welcome':
+        welcome()
+    elif st.session_state.active_page == 'Brand Analysis':
+        brandanalysis()
+    elif st.session_state.active_page == 'Competition Analysis':
+        companalysis()
+    elif st.session_state.active_page == 'Customer Analysis':
+        customeranalysis()
+    elif st.session_state.active_page == 'AI Chatbot':
+        chatbot()
 
 if __name__ == '__main__':
     main()
