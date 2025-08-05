@@ -6,6 +6,7 @@ import json
 from data.raw.brandcompareinfo import brand_comparison_info
 from data.raw.brands_about_us import brand_text
 from backend.package.sentiment_trends import get_monthly_sentiment_trends
+import streamlit as st
 
 system_prompt = """
 You are a senior brand strategy AI assistant advising brand 'Klarna' on marketing, advertising, and brand management.
@@ -59,6 +60,7 @@ When asked about a brand’s strategy, perception, values, or ideas for campaign
    - **Overlaps** with competitors (non-differentiating values)
    - Strategic risks or opportunities
    - Shifts in customer perception over time
+
 3. **Recommend Strategic Actions**
 Provide actionable guidance on:
    - **Messaging focus** — which values to **amplify**, **reframe**, or **soften**
@@ -68,6 +70,22 @@ Provide actionable guidance on:
    - **How Klarna can differentiate itself from Revolut, N26, bunq, and Trade Republic
 
 Provide reasoning for your suggestions, explaining the competitive advantage brand has in the market and the main misalignment gaps and white spaces in the values it can fill compared to competition.
+
+When replying:
+
+1. If response_stage == "summary" and it's the first-time question:
+   - Provide only high-level diagnosis (3-4 bullet points max).
+   - End by asking if the user wants a deeper analysis.
+2. If response_stage == "deep_dive":
+   - Provide trend analysis, data breakdown, strategic risks.
+   - End by asking if user wants specific campaign ideas.
+3. If response_stage == "strategy":
+   - Provide actionable campaign, UX, product, and messaging suggestions.
+   - Do not repeat diagnosis. Focus only on strategic actions.
+
+
+If the input is vague or just a brand name, ask a clarifying question first instead of launching into a full report.
+You should give full strategic guidance if asked directly about alignment, campaigns, or differentiation.
 
 When evaluating sentiment, prioritize direction and change, not just overall averages. A brand that scores highly but is declining in recent months may be at risk of losing relevance or customer satisfaction.
 A consistently strong perception in the past (e.g., for user_centricity) does not guarantee continued strength. A downward trend, especially sustained over recent months, may indicate growing dissatisfaction or shifts in expectations.
@@ -87,65 +105,115 @@ def extract_brand_names(text: str, brand_list=None):
     return extracted_brand
 
 
-def handle_query(question: str, brand_kw_df, review_kw_df, api_key): # history: list[dict],
+def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history=None, last_brands=None): # history: list[dict],
     client = OpenAI(api_key=api_key)
+
+    if chat_history is None:
+        chat_history = []
+
     brands = extract_brand_names(question)
-    print(brands)
+    #print(brands)
+
+    if not brands and last_brands:
+        brands = last_brands
 
     # If no brands found, return a message
     if not brands:
         return f"Sorry, I couldn't find any known brands in your question. Supported brands: {', '.join(supported_brands)}."
 
+    #if len(question.split()) < 4:
+        #return "Tell me what can I help you with: messaging, user perception, or campaign ideas?"
+
     elif len(brands) == 1:
         brand = brands[0]
-        summary = get_alignment_summary(brand, brand_kw_df, review_kw_df)
-        sentiment_df = get_monthly_sentiment_trends()
-        summary["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == brand.lower()].to_dict(orient="records")
+        st.session_state.last_brands = brands
+        #summary = get_alignment_summary(brand, brand_kw_df, review_kw_df)
+        #sentiment_df = get_monthly_sentiment_trends()
+        #summary["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == brand.lower()].to_dict(orient="records")
 
-        context = (
-            f"You are analyzing the brand alignment for {brand}.\n"
-            f"Use the JSON summary below to understand user perception vs brand values and generate strategy insights.\n\n"
-            f"{json.dumps(summary, indent=2)}"
-        )
-        prompt = (
-            f"You are a brand strategy consultant.\n\n"
-            f"User asked: \"{question}\"\n\n"
-            f"Use the summary below to answer with strategic recommendations:\n\n"
-            f"{context}"
-        )
+        #context = (
+            #f"You are analyzing the brand alignment for {brand}.\n"
+            #f"Use the JSON summary below to understand user perception vs brand values and generate strategy insights.\n\n"
+            #f"Do not list recommendations or action steps yet.\n"
+            #f"End by asking if the user would like a deeper breakdown with suggestions.\n\n"
+            #f"{json.dumps(summary, indent=2)}"
+        #)
+
+        #prompt = (
+            #f"You are a brand strategy consultant.\n\n"
+            #f"User asked: \"{question}\"\n\n"
+            #f"Use the summary below to answer with strategic recommendations:\n\n"
+            #f"{context}"
+        #)
+        if "brand_summary" not in st.session_state:
+            summary = get_alignment_summary(brand, brand_kw_df, review_kw_df)
+            sentiment_df = get_monthly_sentiment_trends()
+            summary["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == brand.lower()].to_dict(orient="records")
+            st.session_state.brand_summary = summary
+            st.session_state.response_stage = "summary"
+        else:
+            summary = st.session_state.brand_summary
+
+        # Format summary for system-level context (only added once)
+        if not any("brand_summary:" in m["content"] for m in chat_history):
+            summary_msg = {
+                "role": "system",
+                "content": f"brand_summary:\n{json.dumps(summary, indent=2)}"
+            }
+            chat_history.insert(0, summary_msg)
 
     elif len(brands) == 2:
         b1, b2 = brands
-        summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
-        summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
-        sentiment_df = get_monthly_sentiment_trends()
-        summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
-        summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
+        st.session_state.last_brands = brands
+        #summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
+        #summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
+        #sentiment_df = get_monthly_sentiment_trends()
+        #summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
+        #summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
 
-        context = json.dumps({
-            b1: summary1,
-            b2: summary2
-        }, indent=2)
+        #context = json.dumps({
+        #    b1: summary1,
+        #    b2: summary2
+        #}, indent=2)
 
-        prompt = (
-            f"You are a brand strategist comparing two brands.\n\n"
-            f"User asked: \"{question}\"\n\n"
-            f"Use the summaries below to compare their alignment with user perception."
-            f"Highlight key differences and suggest which brand is better positioned:\n\n"
-            f"{context}"
-        )
+
+        #prompt = (
+        #    f"You are a brand strategist comparing two brands.\n\n"
+        #    f"User asked: \"{question}\"\n\n"
+        #    f"Use the summaries below to compare their alignment with user perception."
+        #    f"Highlight key differences and suggest which brand is better positioned:\n\n"
+        #    f"{context}"
+        #)
+
+        if "brand_summary" not in st.session_state:
+            summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
+            summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
+            sentiment_df = get_monthly_sentiment_trends()
+            summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
+            summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
+            combined = {b1: summary1, b2: summary2}
+            st.session_state.brand_summary = combined
+            st.session_state.response_stage = "summary"
+        else:
+            combined = st.session_state.brand_summary
+
+        if not any("brand_summary:" in m["content"] for m in chat_history):
+            chat_history.insert(0, {
+                "role": "system",
+                "content": f"brand_summary:\n{json.dumps(combined, indent=2)}"
+            })
 
     else:
         return "I can only compare up to two brands at a time. Please ask about one or two brands."
 
     # Send to OpenAI
+
+    messages = [{"role": "system", "content": system_prompt}] + chat_history + [{"role": "user", "content": prompt}]
+
     try:
         response = client.chat.completions.create(
             model="gpt-4o",
-            messages=[
-                {"role": "system", "content": system_prompt},
-                {"role": "user", "content": prompt}
-            ],
+            messages=messages,
             temperature=0.5
         )
         return response.choices[0].message.content

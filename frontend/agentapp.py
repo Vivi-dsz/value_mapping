@@ -26,7 +26,11 @@ st.title("💬 Brand Strategy Assisstant")
 st.caption("🚀 A brand expert chatbot powered by OpenAI")
 
 if "messages" not in st.session_state:
+    st.session_state.messages = []
     st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
+
+if "last_brands" not in st.session_state:
+    st.session_state.last_brands = []
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
@@ -35,7 +39,14 @@ if prompt := st.chat_input():
     st.session_state.messages.append({"role": "user", "content": prompt})
     st.chat_message("user").write(prompt)
     # Call your custom agent
-    msg = handle_query(question = prompt, brand_kw_df=brand_kw_df, review_kw_df=review_kw_df, api_key=api_key)
+    msg = handle_query(
+        question = prompt,
+        brand_kw_df=brand_kw_df,
+        review_kw_df=review_kw_df,
+        api_key=api_key,
+        chat_history=st.session_state.messages,
+        last_brands=st.session_state.last_brands
+        )
 
     st.session_state.messages.append({"role": "assistant", "content": msg})
     st.chat_message("assistant").write(msg)
