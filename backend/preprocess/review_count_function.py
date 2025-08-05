@@ -2,6 +2,13 @@ from collections import Counter
 import pandas as pd
 from backend.preprocess.kw_counter import count_kw_in_tokens
 from backend.preprocess.data_prep import clean_and_tokenize
+from backend.preprocess.params import *
+
+keywords = [
+    word
+    for words in values_keywords.values()
+    for word in words
+]
 
 
 def get_review_counts(df_reviews, keywords):

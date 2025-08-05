@@ -5,7 +5,7 @@ def get_monthly_sentiment_trends():
     Returns monthly Bayesian-averaged sentiment scores for each (brand, topic) pair
     over the last 12 months (Aug 2024–Jul 2025).
     """
-    df=pd.read_csv('/data/raw/final_reviews_with_topics_and_sentiment.csv')
+    df=pd.read_csv('../data/raw/final_reviews_with_topics_and_sentiment.csv')
 
 
     # Ensure datetime and extract month
