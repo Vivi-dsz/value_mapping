@@ -117,6 +117,19 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
     if not brands and last_brands:
         brands = last_brands
 
+    followups = {"yes", "yes please", "please do", "go ahead", "sure", "ok"}
+
+    if question.strip().lower() in followups:
+        current_stage = st.session_state.get("response_stage", None)
+
+    if current_stage == "summary":
+        st.session_state.response_stage = "deep_dive"
+        question = f"Please provide a detailed breakdown for {st.session_state.last_brands[0]}"
+
+    elif current_stage == "deep_dive":
+        st.session_state.response_stage = "strategy"
+        question = f"Please give strategic recommendations and campaign ideas for {st.session_state.last_brands[0]}"
+
     # If no brands found, return a message
     if not brands:
         return f"Sorry, I couldn't find any known brands in your question. Supported brands: {', '.join(supported_brands)}."
