@@ -10,8 +10,22 @@ from backend.preprocess.review_count_function import *
 from data.preprocessed.dataframes import review_merged_df
 import streamlit as st
 from dotenv import load_dotenv
+import json
 
+# Load API Key for OpenAI
+load_dotenv()
 api_key = os.getenv("OpenAI_API_KEY")
+
+
+def save_memory(messages, path="chat_memory.json"):
+    with open(path, "w") as f:
+        json.dump(messages, f)
+
+def load_memory(path="chat_memory.json"):
+    if os.path.exists(path):
+        with open(path, "r") as f:
+            return json.load(f)
+    return []
 
 @st.cache_data
 def load_keyword_dfs():
@@ -26,7 +40,9 @@ st.title("💬 Brand Strategy Assisstant")
 st.caption("🚀 A brand expert chatbot powered by OpenAI")
 
 if "messages" not in st.session_state:
-    st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
+    st.session_state["messages"] = load_memory()
+    if not st.session_state["messages"]:
+        st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
 
 for msg in st.session_state.messages:
     st.chat_message(msg["role"]).write(msg["content"])
@@ -39,3 +55,6 @@ if prompt := st.chat_input():
 
     st.session_state.messages.append({"role": "assistant", "content": msg})
     st.chat_message("assistant").write(msg)
+
+    # Save the updated memory
+    save_memory(st.session_state["messages"])
