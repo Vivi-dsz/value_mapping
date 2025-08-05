@@ -3,6 +3,7 @@ from openai import OpenAI
 from backend.preprocess.alignment_score import get_alignment_summary
 from backend.preprocess.params import *
 import json
+from data.raw.brandcompareinfo import brand_comparison_info
 
 
 system_prompt = """
@@ -28,7 +29,7 @@ You can call `get_alignment_summary(brand)` to:
 - Get a recommendation on what to reinforce or shift
 
 
-You can access ... (here docs that we are providing as additional input i.e. brands about us and results from the other analyses)
+You can access 'brand_compare_info' dictionary that provides you with additional input i.e. brands about us and results from the other analyses.
 
 
 Always call this function and input **before** making campaign suggestions.
