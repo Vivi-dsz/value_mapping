@@ -1,7 +1,10 @@
 import os, sys
-project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
-if project_root not in sys.path:
-    sys.path.insert(0, project_root)
+import pandas as pd
+
+rootpath = os.path.join(os.getcwd(), '..')
+sys.path.append(rootpath)
+user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'final_reviews_with_topics_and_sentiment.csv')
+user_reviews_sentiment_df=pd.read_csv(user_reviews_sentiment_data)
 
 import openai
 from openai import OpenAI
@@ -13,20 +16,25 @@ from data.raw.brands_about_us import brand_text
 from backend.package.sentiment_trends import get_monthly_sentiment_trends
 import streamlit as st
 
+# Check if user chose a brand, if not default to Klarna
+if 'chosen_brand' in st.session_state.keys():
+    brand_name = st.session_state['chosen_brand']
+else:
+    brand_name = 'Klarna'
+
+def system_prompt(brand_name):
+    return f"""
+You are a senior brand strategy AI assistant advising brand {brand_name} on marketing, advertising, and brand management.
+Your role is to help {brand_name} win in the competitive fintech landscape by sharpening its brand positioning, communication strategy, and campaign messaging.
+You always act in {brand_name}’s best interest. Your recommendations are designed to help Klarna stand out from competitors and better connect with customers.
 
 
-system_prompt = """
-You are a senior brand strategy AI assistant advising brand 'Klarna' on marketing, advertising, and brand management.
-Your role is to help 'Klarna' win in the competitive fintech landscape by sharpening its brand positioning, communication strategy, and campaign messaging.
-You always act in 'Klarna'’s best interest. Your recommendations are designed to help Klarna stand out from competitors and better connect with customers.
-
-
-You represent this 'Klarna'’s interests and your role is to help them win customer attention, trust, and loyalty — especially in a highly competitive landscape. Your goal is to sharpen their brand identity, differentiate them from competitors, and align their messaging with what customers truly value.
+You represent this {brand_name}’s interests and your role is to help them win customer attention, trust, and loyalty — especially in a highly competitive landscape. Your goal is to sharpen their brand identity, differentiate them from competitors, and align their messaging with what customers truly value.
 
 You are operating in the German market, and your main competitors are: "N26", "Revolut", "Trade Republic", "Bunq"
 
 You make recommendations based on three inputs:
-1. The 'Klarna'’s current brand positioning (messaging, values, tone)
+1. The {brand_name}’s current brand positioning (messaging, values, tone)
 2. Competitor positioning (where other brands overlap or stand out)
 3. Customer perception (what users care about, as seen in reviews)
 
@@ -98,7 +106,7 @@ When evaluating sentiment, prioritize direction and change, not just overall ave
 A consistently strong perception in the past (e.g., for user_centricity) does not guarantee continued strength. A downward trend, especially sustained over recent months, may indicate growing dissatisfaction or shifts in expectations.
 Therefore, even if a topic used to be positively perceived, a recent decline is a red flag — suggesting erosion of trust or relevance that needs immediate attention.
 
-Avoid speculations, only ground your replies on the available data. Never guess an alignment - always call the tools first. Be concise but insightful. Sound like a confident strategist with access to real behavioral data — not just abstract theory. Think like a brand strategist sitting inside the 'Klarna'’s team — focused, competitive, and customer-aware. You are clear, confident, and helpful.
+Avoid speculations, only ground your replies on the available data. Never guess an alignment - always call the tools first. Be concise but insightful. Sound like a confident strategist with access to real behavioral data — not just abstract theory. Think like a brand strategist sitting inside the {brand_name}’s team — focused, competitive, and customer-aware. You are clear, confident, and helpful.
 """
 
 
@@ -148,7 +156,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
         brand = brands[0]
         st.session_state.last_brands = brands
         #summary = get_alignment_summary(brand, brand_kw_df, review_kw_df)
-        #sentiment_df = get_monthly_sentiment_trends()
+        #sentiment_df = get_monthly_sentiment_trends(user_reviews_sentiment_df)
         #summary["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == brand.lower()].to_dict(orient="records")
 
         #context = (
@@ -167,7 +175,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
         #)
         if "brand_summary" not in st.session_state:
             summary = get_alignment_summary(brand, brand_kw_df, review_kw_df)
-            sentiment_df = get_monthly_sentiment_trends()
+            sentiment_df = get_monthly_sentiment_trends(user_reviews_sentiment_df)
             summary["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == brand.lower()].to_dict(orient="records")
             st.session_state.brand_summary = summary
             st.session_state.response_stage = "summary"
@@ -187,7 +195,8 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
         st.session_state.last_brands = brands
         #summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
         #summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
-        #sentiment_df = get_monthly_sentiment_trends()
+        
+        #sentiment_df = get_monthly_sentiment_trends(user_reviews_sentiment_df)
         #summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
         #summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
 
@@ -208,7 +217,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
         if "brand_summary" not in st.session_state:
             summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
             summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
-            sentiment_df = get_monthly_sentiment_trends()
+            sentiment_df = get_monthly_sentiment_trends(user_reviews_sentiment_df)
             summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
             summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
             combined = {b1: summary1, b2: summary2}
@@ -228,7 +237,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
 
     # Send to OpenAI
 
-    messages = [{"role": "system", "content": system_prompt}] + chat_history + [{"role": "user", "content": question}]
+    messages = [{"role": "system", "content": system_prompt(brand_name)}] + chat_history + [{"role": "user", "content": question}]
 
     try:
         response = client.chat.completions.create(

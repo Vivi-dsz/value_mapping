@@ -53,7 +53,9 @@ def companalysis():
         if brand_name is not None:
             brands_to_compare = st.multiselect(
                 "Which competitors would you like to compare?",
-                options=competitors, key='chosen_competitors',
+                options=competitors,
+                ## To save current selection
+                # key='chosen_competitors',
                 max_selections=4, width="stretch",
                 accept_new_options=False,
                 default=None,

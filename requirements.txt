@@ -12,3 +12,4 @@ google_play_scraper
 openai
 transformers
 plotly
+python-dotenv
