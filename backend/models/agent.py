@@ -1,3 +1,8 @@
+import os, sys
+project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 import openai
 from openai import OpenAI
 from backend.preprocess.alignment_score import get_alignment_summary
@@ -7,6 +12,8 @@ from data.raw.brandcompareinfo import brand_comparison_info
 from data.raw.brands_about_us import brand_text
 from backend.package.sentiment_trends import get_monthly_sentiment_trends
 import streamlit as st
+
+
 
 system_prompt = """
 You are a senior brand strategy AI assistant advising brand 'Klarna' on marketing, advertising, and brand management.
@@ -117,18 +124,18 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
     if not brands and last_brands:
         brands = last_brands
 
-    followups = {"yes", "yes please", "please do", "go ahead", "sure", "ok"}
+#    followups = {"yes", "yes please", "please do", "go ahead", "sure", "ok"}
 
-    if question.strip().lower() in followups:
-        current_stage = st.session_state.get("response_stage", None)
+    # if question.strip().lower() in followups:
+    #     current_stage = st.session_state.get("response_stage", None)
 
-    if current_stage == "summary":
-        st.session_state.response_stage = "deep_dive"
-        question = f"Please provide a detailed breakdown for {st.session_state.last_brands[0]}"
+    # if current_stage == "summary":
+    #     st.session_state.response_stage = "deep_dive"
+    #     question = f"Please provide a detailed breakdown for {st.session_state.last_brands[0]}"
 
-    elif current_stage == "deep_dive":
-        st.session_state.response_stage = "strategy"
-        question = f"Please give strategic recommendations and campaign ideas for {st.session_state.last_brands[0]}"
+    # elif current_stage == "deep_dive":
+    #     st.session_state.response_stage = "strategy"
+    #     question = f"Please give strategic recommendations and campaign ideas for {st.session_state.last_brands[0]}"
 
     # If no brands found, return a message
     if not brands:
@@ -221,7 +228,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
 
     # Send to OpenAI
 
-    messages = [{"role": "system", "content": system_prompt}] + chat_history + [{"role": "user", "content": prompt}]
+    messages = [{"role": "system", "content": system_prompt}] + chat_history + [{"role": "user", "content": question}]
 
     try:
         response = client.chat.completions.create(
