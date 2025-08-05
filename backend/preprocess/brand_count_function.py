@@ -2,6 +2,13 @@ from collections import Counter
 import pandas as pd
 from backend.preprocess.lem_counter import count_stem_kws
 from backend.preprocess.data_prep import clean_and_tokenize
+from backend.preprocess.params import *
+
+keywords = [
+    word
+    for words in values_keywords.values()
+    for word in words
+]
 
 
 def get_brand_counts(brand_text, keywords):

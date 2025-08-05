@@ -195,6 +195,7 @@ def handle_query(question: str, brand_kw_df, review_kw_df, api_key, chat_history
         st.session_state.last_brands = brands
         #summary1 = get_alignment_summary(b1, brand_kw_df, review_kw_df)
         #summary2 = get_alignment_summary(b2, brand_kw_df, review_kw_df)
+        
         #sentiment_df = get_monthly_sentiment_trends(user_reviews_sentiment_df)
         #summary1["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b1.lower()].to_dict(orient="records")
         #summary2["sentiment"] = sentiment_df[sentiment_df["brand"].str.lower() == b2.lower()].to_dict(orient="records")
