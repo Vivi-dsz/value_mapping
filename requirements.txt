@@ -1,7 +1,4 @@
 streamlit
-pytest
-pylint
-ipdb
 jupyterlab
 numpy
 pandas
@@ -14,12 +11,4 @@ uvicorn
 google_play_scraper
 openai
 transformers
-torch
-tensorflow-datasets==4.9.7
-tensorflow-metadata==1.16.1
-tensorflow==2.16.2
-keras-hub==0.19.0
-keras-nlp==0.19.0
-keras==3.8.0
-gensim==4.3.3
 plotly
