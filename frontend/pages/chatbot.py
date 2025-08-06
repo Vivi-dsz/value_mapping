@@ -46,13 +46,15 @@ def chatbot():
                 I’ll start with a quick diagnosis and offer more detail if needed.
                 """)
 
-    left, center, right = st.columns([4,4,4], vertical_alignment="top")
-    with left:
-        openai_api_key = st.text_input("Please Provide an OpenAI API Key to continue:", key="chatbot_api_key", type="password")
 
     if "messages" not in st.session_state:
         st.session_state.messages = []
         st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
+
+    if not st.session_state.get("chatbot_api_key"):
+        st.warning("Please enter your OpenAI API Key to continue.")
+        st.text_input("🔐 OpenAI API Key", key="chatbot_api_key", type="password")
+        st.stop()
 
     if "last_brands" not in st.session_state:
         st.session_state.last_brands = []
@@ -76,6 +78,10 @@ def chatbot():
         st.session_state.messages.append({"role": "assistant", "content": msg})
         st.chat_message("assistant").write(msg)
 
+
+    #left, center, right = st.columns([4,4,4], vertical_alignment="bottom")
+    #with left:
+    #    openai_api_key = st.text_input("Please Provide an OpenAI API Key to continue:", key="chatbot_api_key", type="password")
 
 if __name__ == '__main__':
     chatbot()
