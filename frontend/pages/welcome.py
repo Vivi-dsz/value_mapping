@@ -13,7 +13,7 @@ def welcome():
         initial_sidebar_state="expanded"
     )
 
-    st.title("Brand Value Mapping Tool")
+    st.title("Brand Strategy AI Assistant")
 
     st.markdown("""An automated analysis serving as a fundament for all brand strategies -
                 positioning, marketing, design, communication.""")
