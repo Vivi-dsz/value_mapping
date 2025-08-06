@@ -4,16 +4,20 @@ A multi-page AI-powered app for analyzing customer perception, brand communicati
 
 Currently, the app is a brand strategy AI assistant advising brand 'Klarna' on marketing, advertising, and brand management.
 
+https://valuemap.streamlit.app/
+
 ---
 
 ## Features
-- Welcome page
+
+- Welcome Page
 - Brand Analysis
 - Customer Analysis
-- Compterirors Analysis
+- Competitors Analysis
 - AI-Powered Chatbot
 
 ### Agent Chatbot
+
 - Ask brand strategy questions like:
   - "We see decline in new users, can you please tell us what is the current brand strategy and gaps in user perception for Klarna?"
   - "How can Klarna differentiate itself from Bunq to acquire more users?"
@@ -21,6 +25,7 @@ Currently, the app is a brand strategy AI assistant advising brand 'Klarna' on m
 - Responses are generated using LLMs + preprocessed insights.
 
 ### Customer Review Analysis Pipeline
+
 - Customer reviews are scraped from google_play_scraper
 - Extracts:
   - Main topics from user reviews:
@@ -29,6 +34,7 @@ Currently, the app is a brand strategy AI assistant advising brand 'Klarna' on m
 - Maps reviews to psychological value categories (e.g., *trust*, *freedom*, *simplicity*, etc.)
 
 ### Brand Value Mapping
+
 - Analyzes company brand content (extracted e.g. from their “About Us” page)
 - Matches against value keywords (for further information, contact our specialists) to detect the brand positioning
 - Compares against how users perceive the brand
@@ -36,95 +42,20 @@ Currently, the app is a brand strategy AI assistant advising brand 'Klarna' on m
   supported_brands = ["Klarna", "N26", "Revolut", "Trade Republic", "Bunq"]
 
 ### Visual Insights
+
 - Polar/radar charts for value alignment for each brand based on their positioning
+- Polar/radar charts comparison of the brand with its competitors
 - Polar/radar charts for value alignment for each brand based on user perception
 - Heatmaps of sentiment vs topic per brand
+- Sentiment analysis over time per brand per topic
 
 ### Persistent Memory
+
 - Chatbot remembers conversation across a session
-
----
-
-## Project Structure
-.
-├── backend
-│   ├── models
-│   │   ├── agent.py
-│   │   ├── mvpsimplemodel.pkl
-│   │   └── xgb_classifier.pkl
-│   ├── package
-│   │   ├── api_file.py
-│   │   ├── dummy.py
-│   │   ├── __init__.py
-│   │   ├── model_sentiment.py
-│   │   ├── predict_topic.py
-│   │   └── sentiment_trends.py
-│   ├── preprocess
-│   │   ├── alignment_score.py
-│   │   ├── brand_count_function.py
-│   │   ├── build_kw_tables.py
-│   │   ├── data_prep.py
-│   │   ├── __init__.py
-│   │   ├── lem_counter.py
-│   │   ├── lemmatizer.py
-│   │   ├── openai.py
-│   │   ├── params.py
-│   │   ├── review_count_function.py
-│   │   └── score_sentiment.py
-│   ├── scrape
-│   │   ├── app_details.py
-│   │   └── user_reviews.py
-│   └── visualization
-│       ├── get_kw_count_df.py
-│       ├── kw_2d_reduction.py
-│       ├── kw_cat_plot.py
-│       ├── kw_count_bubble_plot.py
-│       ├── kw_count_polar_plot.py
-│       ├── monthly_sentiment_plot.py
-│       └── sentiment_heatmap.py
-├── data
-│   ├── preprocessed
-│   │   ├── dataframes.py
-│   │   ├── final_reviews_with_topics_and_sentiment.csv
-│   │   ├── kw_counted_user_reviews_v01.csv
-│   │   ├── merged_review_topics_v01.csv
-│   │   ├── openai_topics.csv
-│   │   ├── README.md
-│   │   └── user_reviews.csv
-│   └── raw
-│       ├── analysis_results.py
-│       ├── bank_details_v01.csv
-│       ├── brandcompareinfo.py
-│       ├── brands_about_us.py
-│       ├── kw_topics_v1.py
-│       ├── user_reviews_10k_v01.csv
-│       ├── user_reviews_10k_v02.csv
-│       └── user_reviews_v01.csv
-├── frontend
-│   ├── agentapp.py
-│   ├── app.py
-│   ├── modules
-│   │   ├── brandcompareinfo.py
-│   │   ├── brandinfo.py
-│   │   ├── companydesc.py
-│   │   └── navbar.py
-│   ├── pages
-│   │   ├── brandanalysis.py
-│   │   ├── chatbot.py
-│   │   ├── companalysis.py
-│   │   ├── customeranalysis.py
-│   │   └── welcome.py
-│   ├── .streamlit
-│   │   └── config.toml
-│   └── ValueMapApp.py
-├── README.md
-└── requirements.txt
-
----
 
 ## Setup Instructions
 
-### 1. Clone the Repo
+Clone the Repo:
 
 git clone https://github.com/Vivi-dsz/value_mapping.git
 cd value_mapping
@@ -133,14 +64,12 @@ cd value_mapping
 
 pip install -r requirements.txt
 
-## Set Up Environment Variables
+## Run the App [LOCAL USE]
 
 Create a .env file in the root directory and add your API keys:
 OPENAI_API_KEY=openai-key
 
 Attention: Never commit your .env file to version control.
-
-## Run the App
 
 cd frontend
 streamlit run app.py
