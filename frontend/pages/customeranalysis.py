@@ -9,6 +9,7 @@ user_reviews_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'kw_c
 user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'final_reviews_with_topics_and_sentiment.csv')
 
 from frontend.modules.navbar import navbar
+from frontend.modules.brandcustomerinfo import brand_customer_info
 from backend.visualization.get_kw_count_df import get_kw_count_df
 # from backend.visualization.get_user_kw_count_df import get_user_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
@@ -60,12 +61,17 @@ def customeranalysis():
     with right_top:
         if brand_name is not None:
             st.subheader("Perception Gap Analysis")
+            st.markdown(brand_customer_info[brand_name])
 
-    sentiment_data = pd.read_csv(user_reviews_sentiment_data)
 
     if brand_name is not None:
-        st.plotly_chart(sentiment_heatmap(sentiment_data))
-        st.plotly_chart(monthly_sentiment_plot(sentiment_data, brand_name))
+        placeholder_heatmap = st.empty()
+        placeholder_timeline = st.empty()
+        if st.checkbox("Show Customer Sentiment Analysis"):
+            sentiment_data = pd.read_csv(user_reviews_sentiment_data)
+            placeholder_heatmap.plotly_chart(sentiment_heatmap(sentiment_data))
+            placeholder_timeline.plotly_chart(monthly_sentiment_plot(sentiment_data, brand_name))
+
 
 if __name__ == '__main__':
     customeranalysis()
