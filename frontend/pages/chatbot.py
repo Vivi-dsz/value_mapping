@@ -11,10 +11,10 @@ from backend.models.agent import *
 from backend.preprocess.brand_count_function import *
 from backend.preprocess.review_count_function import *
 from data.raw.brands_about_us import brand_text
+
+### For local run with environment variable
 # from dotenv import load_dotenv
-
 # load_dotenv()
-
 # api_key = os.getenv("OpenAI_API_KEY")
 
 def chatbot():
@@ -46,15 +46,17 @@ def chatbot():
                 I’ll start with a quick diagnosis and offer more detail if needed.
                 """)
 
-
     if "messages" not in st.session_state:
         st.session_state.messages = []
         st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
 
-    if not st.session_state.get("chatbot_api_key"):
-        st.warning("Please enter your OpenAI API Key to continue.")
-        st.text_input("🔐 OpenAI API Key", key="chatbot_api_key", type="password")
-        st.stop()
+    ### To ask user for API key
+    # left, right = st.columns([4,4], vertical_alignment="bottom")
+    # with left:
+    #     if not st.session_state.get("chatbot_api_key"):
+    #         text_input_container = st.empty()
+    #         text_input_container.warning("Please enter your OpenAI API Key to continue.")
+    #         openai_api_key = text_input_container.text_input("🔐 OpenAI API Key", key="chatbot_api_key", type="password")
 
     if "last_brands" not in st.session_state:
         st.session_state.last_brands = []
@@ -70,18 +72,13 @@ def chatbot():
             question = prompt,
             brand_kw_df=brand_kw_df,
             review_kw_df=review_kw_df,
-            api_key=openai_api_key,
+            api_key=st.secrets["OpenAI_API_KEY"],
             chat_history=st.session_state.messages,
             last_brands=st.session_state.last_brands
             )
 
         st.session_state.messages.append({"role": "assistant", "content": msg})
         st.chat_message("assistant").write(msg)
-
-
-    #left, center, right = st.columns([4,4,4], vertical_alignment="bottom")
-    #with left:
-    #    openai_api_key = st.text_input("Please Provide an OpenAI API Key to continue:", key="chatbot_api_key", type="password")
 
 if __name__ == '__main__':
     chatbot()

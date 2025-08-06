@@ -15,8 +15,8 @@ def welcome():
 
     st.title("Brand Value Mapping Tool")
 
-    st.markdown("""An automated brand, competitor and customer analysis serving as a fundament
-    for all brand strategies - positioning, marketing, design and communication.""")
+    st.markdown("""An automated analysis serving as a fundament for all brand strategies -
+                positioning, marketing, design, communication.""")
 
     with st.popover("What is value-based brand strategy?"):
         st.markdown("""Building a brand's identity, messaging, and positioning
@@ -35,26 +35,28 @@ def welcome():
         st.subheader("Brand Analysis")
 
         st.markdown("""
-        By classifying the core values your brand communicates -
-        whether via advertising, website content, or product messaging -
-        it becomes possible to identify and visualize the brands communicative positioning.
+                    - Classifies the **core values** your brand communicates
+                    - Analyzes language from **advertising, website content, and product messaging**
+                    - Identifies and visualizes the brand’s **communicative positioning** within a value framework
         """)
 
     with center:
         st.subheader("Competitor Analysis")
 
         st.markdown("""
-        Compare your brand to your competitors to find strategic competitive
-        overlaps or white-space opportunities enabling data-informed brand differentiation.
+                    - Compares your brand’s value signals with those of key competitors
+                    - Identifies areas of **strategic overlap** or **white-space opportunities**
+                    - Enables **data-informed brand differentiation** and **distinct communicative positioning**
         """)
 
     with right:
-        st.subheader("Target Group Analysis")
+        st.subheader("Customer Analysis")
 
         st.markdown("""
-        Overlay consumer value profiles with your brand’s communicative values
-        to detect value misalignments or missed opportunities. This enables you
-        to tailor content and messaging to resonate more deeply and enable targeted campaign planning.
+                    - Overlays **consumer value profiles** with your brand’s communicative values
+                    - Detects **value misalignments** or **missed opportunities**
+                    - Helps tailor content and messaging to **resonate more deeply** with your audience
+                    - Supports **targeted campaign planning** based on motivational fit
         """)
 
 if __name__ == '__main__':

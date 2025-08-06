@@ -1,48 +1,36 @@
-brand_analysis_info = {"Bunq": """bunq’s brand communication strongly centers around the
-              values of **growth & ambition**, **empowerment & control**, and
-              **user-centricity & support**, with a distinct emphasis on **freedom**,
-              **personal choice**, and **future orientation**. The dominant keywords
-              suggest a brand narrative built around **financial autonomy**,
-              **progress**, and **self-determination** —
-              presenting bunq as a tool for **individual empowerment** and **life advancement**.
-              Secondary value clusters include **sustainability**, **usability**, and **trust**
-              signaling efforts to align with ethical, user-friendly, and responsible fintech values.""",
-              "Klarna": """Klarna’s communication puts a strong emphasis on **user centricity**
-              and **support**. This suggests a brand identity centered around **personalized care**,
-              **smooth interaction**, and an **effortless user experience**, consistent with Klarna’s
-              reputation for simplifying online shopping and payments. There is also meaningful
-              attention to **trust and ethics**, underlining Klarna’s efforts to position itself as
-              **a safe and reliable financial partner**, especially important in the buy-now-pay-later
-              space. While **innovation/technology** and **quality/usability** are clearly present,
-              Klarna’s tone is more **service- and human-oriented** than aggressively futuristic or growth-focused.
+brand_analysis_info = {"Bunq": """
+              - Centers on **growth & ambition**, **empowerment & control**, and
+              **user-centricity & support**
+              - Emphasizes **freedom**, **personal choice**, and **future orientation**
+              - Narrative built around **financial autonomy**,**progress**, and **self-determination**
+              - Secondary values include **sustainability**, **usability**, and **trust**
+              - Positions bunq as a tool for **individual empowerment and ethical finance**
+              """,
+              "Klarna": """
+              - Emphasizes **user centricity**, **support** and **effortless experience**
+              - Builds a brand narrative around **personalized care** and **simplicity**
+              - Highlights **trust** and **ethics**, especially important for BNPL
+              - Innovation and usability are present but less dominant
+              - Positions itself as a **safe, service-oriented financial partner**
               """,
               "Revolut": """
-              Revolut presents a brand identity that is **globally minded**, **tech-forward**,
-              and **user-attuned**. Its strongest emphasis lies on **community & belonging**,
-              highlighting its identity as a **borderless, inclusive financial platform** for international users.
-              Strong signals also emerge in **user-centricity** and **innovation**,
-              suggesting a focus on delivering **fast, seamless, and enjoyable digital experiences**.
-              The brand clearly positions itself as a **technology-first enabler** of modern finance.
-              Values around **trust** and **security** are also communicated consistently,
-              likely to reinforce confidence in a product that handles sensitive financial operations.
+              - Projects a **globally minded**, **tech-forward**, and **user-attuned identity**
+              - Strong focus on **community & belonging** and **borderless finance**
+              - Highlights **user-centricity** and **innovation** through seamless experiences
+              - Consistently communicates **trust** and **security**
+              - Positioned as a **technology-first enabler** of modern, international finance
               """,
               "Trade Republic":"""
-              Trade Republic projects a clear focus on **growth and ambition**,
-              with a dominant concentration on “*freedom*”. This positions the brand
-              as a vehicle for **wealth building**, and **long-term independence**,
-              aligning with the narrative of democratizing investing. Secondary
-              but notable value signals are found in **trust & security** and **usability**,
-              suggesting an effort to balance ambition with reassurance —
-              particularly important for first-time or cautious investors.
-              Overall, the positioning reflects a **rational, performance-driven promise**.
+              - Strong focus on **growth**, **ambition**, and **financial freedom**
+              - Positions itself as a platform for **wealth building** and **long-term independence**
+              - Secondary values: **trust & security** and **usability**
+              - Messaging reflects a **rational, performance-driven brand**
+              - Appeals to **first-time and goal-oriented investors**
               """,
               "N26":"""
-              N26’s brand identity is most strongly anchored in **trust and ethics**.
-              This clearly communicates a positioning built on **safety**, **accountability**,
-              and **digital responsibility**, which is particularly relevant for a
-              fully digital bank aiming to win customer confidence. **Growth and ambition**
-              is the second most emphasized area, pointing to a **forward-looking, aspirational tone**
-              that resonates with customers seeking **progress** and **financial freedom**.
-              The bank also highlights **innovation and usability**, indicating a tech-driven
-              approach that favors a clean, effortless experience.
+              - Anchored in **trust**, **security**, and **digital responsibility**
+              - Emphasizes **transparency**, **accountability**, and **safety**
+              - Secondarily focused on **growth** and **aspiration**
+              - Also communicates **innovation** and **usability**
+              - Presents a **secure, tech-driven** experience tailored for confidence in digital banking
               """}
