@@ -32,7 +32,7 @@ def brandanalysis():
 
     st.header("Analyse your company")
 
-    left_top, gap, right_top, gap_2 = st.columns([2, 1, 4, 1], vertical_alignment="top")
+    left_top, gap, right_top, gap_2 = st.columns([3, 1, 4, 1], vertical_alignment="top")
 
     with left_top:
         brand_name = st.selectbox('Which company would you like to analyze?', key='chosen_brand',
