@@ -16,14 +16,6 @@ https://valuemap.streamlit.app/
 - Competitors Analysis
 - AI-Powered Chatbot
 
-### Agent Chatbot
-
-- Ask brand strategy questions like:
-  - "We see decline in new users, can you please tell us what is the current brand strategy and gaps in user perception for Klarna?"
-  - "How can Klarna differentiate itself from Bunq to acquire more users?"
-  - "We are planning a new brand marketing campaign for autumn and we would like to have a strategic direction and a breakdown on main    channels and messaging"
-- Responses are generated using LLMs + preprocessed insights.
-
 ### Customer Review Analysis Pipeline
 
 - Customer reviews are scraped from google_play_scraper
@@ -48,6 +40,14 @@ https://valuemap.streamlit.app/
 - Polar/radar charts for value alignment for each brand based on user perception
 - Heatmaps of sentiment vs topic per brand
 - Sentiment analysis over time per brand per topic
+
+### Agent Chatbot
+
+- Ask brand strategy questions like:
+  - "We see decline in new users, can you please tell us what is the current brand strategy and gaps in user perception for Klarna?"
+  - "How can Klarna differentiate itself from Bunq to acquire more users?"
+  - "We are planning a new brand marketing campaign for autumn and we would like to have a strategic direction and a breakdown on main    channels and messaging"
+- Responses are generated using LLMs + preprocessed insights.
 
 ### Persistent Memory
 
