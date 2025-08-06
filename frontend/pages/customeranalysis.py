@@ -10,7 +10,7 @@ user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'fina
 
 from frontend.modules.navbar import navbar
 from backend.visualization.get_kw_count_df import get_kw_count_df
-from backend.visualization.get_user_kw_count_df import get_user_kw_count_df
+# from backend.visualization.get_user_kw_count_df import get_user_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
 from data.raw.brands_about_us import brand_text
 from backend.visualization.kw_count_polar_plot import kw_count_polar_plot

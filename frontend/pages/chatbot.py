@@ -11,11 +11,11 @@ from backend.models.agent import *
 from backend.preprocess.brand_count_function import *
 from backend.preprocess.review_count_function import *
 from data.raw.brands_about_us import brand_text
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
-api_key = os.getenv("OpenAI_API_KEY")
+# api_key = os.getenv("OpenAI_API_KEY")
 
 def chatbot():
     st.session_state.update(st.session_state)
@@ -46,6 +46,10 @@ def chatbot():
                 I’ll start with a quick diagnosis and offer more detail if needed.
                 """)
 
+    left, center, right = st.columns([4,4,4], vertical_alignment="top")
+    with left:
+        openai_api_key = st.text_input("Please Provide an OpenAI API Key to continue:", key="chatbot_api_key", type="password")
+
     if "messages" not in st.session_state:
         st.session_state.messages = []
         st.session_state["messages"] = [{"role": "assistant", "content": "Ready to shape your next branding move?"}]
@@ -64,7 +68,7 @@ def chatbot():
             question = prompt,
             brand_kw_df=brand_kw_df,
             review_kw_df=review_kw_df,
-            api_key=api_key,
+            api_key=openai_api_key,
             chat_history=st.session_state.messages,
             last_brands=st.session_state.last_brands
             )
