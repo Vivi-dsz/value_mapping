@@ -3,6 +3,7 @@ import os, sys
 import pandas as pd
 from pathlib import Path
 
+lemmatized_brand_kw_data = Path(__file__).parents[1] / 'data/preprocessed/lemmatized_brand_kw_count.csv'
 user_reviews_processed_data = Path(__file__).parents[1] / 'data/preprocessed/kw_counted_user_reviews_v01.csv'
 user_reviews_sentiment_data = Path(__file__).parents[1] / 'data/preprocessed/final_reviews_with_topics_and_sentiment.csv'
 
@@ -37,7 +38,7 @@ def customeranalysis():
 
     with left_top:
         if brand_name is not None:
-            df = get_kw_count_df(kw_dict, brand_text)
+            df = pd.read_csv(lemmatized_brand_kw_data)
             df['strategy'] = df['brand']
 
             ### Use keyword matching (takes longer to execute on app)
