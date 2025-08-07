@@ -1,7 +1,7 @@
 import os, sys
 import pandas as pd
 
-rootpath = os.path.join(os.getcwd(), '..')
+rootpath = os.path.join(os.getcwd())
 sys.path.append(rootpath)
 user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'final_reviews_with_topics_and_sentiment.csv')
 user_reviews_sentiment_df=pd.read_csv(user_reviews_sentiment_data)
