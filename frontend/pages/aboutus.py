@@ -3,7 +3,10 @@ import sys, os
 from modules.navbar import navbar
 from pathlib import Path
 
-imagepath = Path(__file__).parents[1] / '/modules/images/'
+imagepath_vivi = Path(__file__).parents[1] / '/modules/images/vivi-dsz.jpg'
+imagepath_ibraeksi = Path(__file__).parents[1] / '/modules/images/ibraeksi.jpg'
+imagepath_gilmali = Path(__file__).parents[1] / '/modules/images/gilmali.png'
+imagepath_elnroshan = Path(__file__).parents[1] / '/modules/images/elnroshan.jpg'
 
 def aboutus():
     st.session_state.update(st.session_state)
@@ -24,7 +27,7 @@ def aboutus():
         {
             "title": "Chief Executive Officer (CEO)",
             "name": "Vivien Daszkowski",
-            "image": imagepath + "vivi-dsz.jpg",
+            "image": imagepath_vivi,
             "In-Project Role": "Founder of the core idea, led the presentation, and established the main workflows for the team.",
             "Real-World Role":
             """Vivien did her Master’s degree in Management and worked at the intersection of business and tech
@@ -35,7 +38,7 @@ def aboutus():
         {
             "title": "Chief Technology Officer (CTO)",
             "name": "Ibrahim Eksi",
-            "image": imagepath + "ibraeksi.jpg",
+            "image": imagepath_ibraeksi,
             "In-Project Role": "Owns the scraping pipeline setup, frontend, and supports the broader technical infrastructure.",
             "Real-World Role":
             """Ibrahim is a Mechanical Engineer with 6 years of experience in vehicle safety simulations followed by 2+ years experience as a data analyst.""",
@@ -45,7 +48,7 @@ def aboutus():
         {
             "title": "Chief Product Officer (CPO)",
             "name": "Liana Gilmanova",
-            "image": imagepath + "gilmali.png",
+            "image": imagepath_gilmali,
             "In-Project Role": "Focused on product development — created the system diagram and proposed the initial MVP structure.",
             "Real-World Role":
             """Liana is a Product Manager with 8 years experience in building and scaling Customer facing Products across 18 countries
@@ -56,7 +59,7 @@ def aboutus():
         {
             "title": "Chief Innovation Officer (CIO)",
             "name": "Elnaz Roshan, Ph.D.",
-            "image": imagepath + "elnroshan.jpg",
+            "image": imagepath_elnroshan,
             "In-Project Role": "Responsible for the AI model development and integration, ensuring metrics and functions are intelligent.",
             "Real-World Role":
             """Elnaz is a Climate Economics with 10+ years of experience in evaluating climate transition
