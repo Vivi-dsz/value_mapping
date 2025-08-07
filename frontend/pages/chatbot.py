@@ -6,7 +6,7 @@ rootpath = os.path.join(os.getcwd(), '..')
 sys.path.append(rootpath)
 review_merged_data = os.path.join(rootpath, 'data/preprocessed/', 'merged_review_topics_v01.csv')
 
-from frontend.modules.navbar import navbar
+from modules.navbar import navbar
 from backend.models.agent import *
 from backend.preprocess.brand_count_function import *
 from backend.preprocess.review_count_function import *
