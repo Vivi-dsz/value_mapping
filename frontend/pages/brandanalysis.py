@@ -1,13 +1,15 @@
 import streamlit as st
 import os, sys
+import pandas as pd
 
 rootpath = os.path.join(os.getcwd(), '..')
 sys.path.append(rootpath)
 
+brand_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'lemmatized_brand_kw_count.csv')
+
 from modules.navbar import navbar
 from modules.companydesc import companydesc
 from modules.brandinfo import brand_analysis_info
-from backend.visualization.get_kw_count_df import get_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
 from data.raw.brands_about_us import brand_text
 from backend.visualization.kw_count_polar_plot import kw_count_polar_plot
@@ -51,7 +53,7 @@ def brandanalysis():
     with left_bottom:
         if brand_name is not None:
 
-            df = get_kw_count_df(kw_dict, brand_text)
+            df = pd.read_csv(brand_processed_data)
 
             brand_name_list = []
             brand_name_list.append(brand_name)
