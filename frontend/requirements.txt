@@ -13,3 +13,4 @@ openai
 transformers
 plotly
 python-dotenv
+pillow
