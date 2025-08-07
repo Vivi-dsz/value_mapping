@@ -23,7 +23,7 @@ def refresh_competitors():
     competitors = [x for x in allbrands if x != brand_name]
     st.session_state['chosen_competitors'] = competitors
 
-def brandanalysis(df):
+def brandanalysis():
     st.session_state.update(st.session_state)
 
     navbar()
