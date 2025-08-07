@@ -53,7 +53,7 @@ def brandanalysis():
     with left_bottom:
         if brand_name is not None:
 
-            df = pd.read_csv('../lemmatized_brand_kw_count.csv')
+            df = pd.read_csv('lemmatized_brand_kw_count.csv')
 
             brand_name_list = []
             brand_name_list.append(brand_name)
