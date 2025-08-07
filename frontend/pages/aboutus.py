@@ -5,9 +5,9 @@ from pathlib import Path
 from PIL import Image
 
 imagepath_vivi = Path(__file__).parents[1] / 'vividsz.jpg'
-imagepath_ibraeksi = 'ibraeksi.jpg'
-imagepath_gilmali = 'gilmali.png'
-imagepath_elnroshan = 'elnroshan.jpg'
+imagepath_ibraeksi = Path(__file__).parents[1] / 'ibraeksi.jpg'
+imagepath_gilmali = Path(__file__).parents[1] / 'gilmali.png'
+imagepath_elnroshan = Path(__file__).parents[1] / 'elnroshan.jpg'
 
 imagelist = [imagepath_vivi,imagepath_ibraeksi, imagepath_gilmali, imagepath_elnroshan]
 
@@ -73,8 +73,8 @@ def aboutus():
 
     ]
 
-    image = Image.open(imagepath_vivi)
-    st.image(image, width=150)
+    #image = Image.open(imagepath_vivi)
+    st.image(imagepath_vivi, width=150)
 
     # # Layout 2x2
     # def chunk_list(lst, n):
