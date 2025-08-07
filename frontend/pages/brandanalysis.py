@@ -4,9 +4,9 @@ import os, sys
 rootpath = os.path.join(os.getcwd(), '..')
 sys.path.append(rootpath)
 
-from frontend.modules.navbar import navbar
-from frontend.modules.companydesc import companydesc
-from frontend.modules.brandinfo import brand_analysis_info
+from modules.navbar import navbar
+from modules.companydesc import companydesc
+from modules.brandinfo import brand_analysis_info
 from backend.visualization.get_kw_count_df import get_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
 from data.raw.brands_about_us import brand_text
