@@ -1,11 +1,11 @@
 import streamlit as st
 from modules.navbar import navbar 
-from pages.1_welcome import welcome
-from pages.2_brandanalysis import brandanalysis
-from pages.3_companalysis import companalysis
-from pages.4_customeranalysis import customeranalysis
-from pages.5_chatbot import chatbot
-from pages.6_aboutus import aboutus
+#from pages.welcome import welcome
+#from pages.brandanalysis import brandanalysis
+#from pages.companalysis import companalysis
+#from pages.customeranalysis import customeranalysis
+#from pages.chatbot import chatbot
+#from pages.aboutus import aboutus
 
 
 def main():
@@ -38,20 +38,21 @@ def main():
     - AI-driven brand strategy assistant
     """)
 
-    navbar()
+#    navbar()
     #--- Run the active page
-    if st.session_state.active_page == 'Welcome':
-        welcome()
-    elif st.session_state.active_page == 'Brand Analysis':
-        brandanalysis()
-    elif st.session_state.active_page == 'Competition Analysis':
-        companalysis()
-    elif st.session_state.active_page == 'Customer Analysis':
-        customeranalysis()
-    elif st.session_state.active_page == 'AI Chatbot':
-        chatbot()
-    elif st.session_state.active_page == 'About Us':
-        aboutus()
+#    if st.session_state.active_page == 'Welcome':
+#        welcome()
+#    elif st.session_state.active_page == 'Brand Analysis':
+#        brandanalysis()
+#    elif st.session_state.active_page == 'Competition Analysis':
+#        companalysis()
+#    elif st.session_state.active_page == 'Customer Analysis':
+#        customeranalysis()
+#    elif st.session_state.active_page == 'AI Chatbot':
+#        chatbot()
+#    elif st.session_state.active_page == 'About Us':
+#        aboutus()
+
 
 if __name__ == '__main__':
     main()
