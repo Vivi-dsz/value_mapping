@@ -71,5 +71,6 @@ def brandanalysis(df):
 
             st.markdown(brand_analysis_info[brand_name])
 
-#if __name__ == '__main__':
-#    brandanalysis()
+if __name__ == '__main__':
+    df = pd.read_csv('./data/preprocessed/lemmatized_brand_kw_count.csv')
+    brandanalysis(df)
