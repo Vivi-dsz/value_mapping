@@ -1,13 +1,13 @@
 import streamlit as st
 import sys, os
 from modules.navbar import navbar
-from pathlib import Path
-from PIL import Image
+#from pathlib import Path
+#from PIL import Image
 
-imagepath_vivi = Path(__file__).parents[1] / '/data/images/vividsz.jpg'
-imagepath_ibraeksi = Path(__file__).parents[1] / '/data/images/ibraeksi.jpg'
-imagepath_gilmali = Path(__file__).parents[1] / '/data/images/gilmali.png'
-imagepath_elnroshan = Path(__file__).parents[1] / '/data/images/elnroshan.jpg'
+imagepath_vivi = 'vividsz.jpg'
+imagepath_ibraeksi = 'ibraeksi.jpg'
+imagepath_gilmali = 'gilmali.png'
+imagepath_elnroshan = 'elnroshan.jpg'
 
 imagelist = [imagepath_vivi,imagepath_ibraeksi, imagepath_gilmali, imagepath_elnroshan]
 
@@ -86,8 +86,7 @@ def aboutus():
             with cols[idx]:
                 left, right = st.columns([2, 4], vertical_alignment="top")
                 with left:
-                    image = Image.open(imagelist[idx])
-                    st.image(image, width=150)
+                    st.image(imagelist[idx], width=150)
                 with right:
                     st.markdown(f"## {member['name']}")
                     st.markdown(f"###### :rainbow[{member['title']}]")
