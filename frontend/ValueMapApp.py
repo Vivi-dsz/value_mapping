@@ -1,11 +1,11 @@
 import streamlit as st
 from modules.navbar import navbar 
 from pages.welcome import welcome
-#from pages.brandanalysis import brandanalysis
-#from pages.companalysis import companalysis
-#from pages.customeranalysis import customeranalysis
-#from pages.chatbot import chatbot
-#from pages.aboutus import aboutus
+from pages.brandanalysis import brandanalysis
+from pages.companalysis import companalysis
+from pages.customeranalysis import customeranalysis
+from pages.chatbot import chatbot
+from pages.aboutus import aboutus
 
 
 def main():
@@ -27,32 +27,21 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    st.title("💬 Brand Strategy Assistant")
-    st.markdown("""
-    Welcome to the **Value Mapping App**.
-
-    Use the sidebar to explore:
-    - Brand analysis
-    - Competitive positioning
-    - Customer sentiment
-    - AI-driven brand strategy assistant
-    """)
-
 
     navbar()
     #--- Run the active page
     if st.session_state.active_page == 'Welcome':
         welcome()
-#    elif st.session_state.active_page == 'Brand Analysis':
-#        brandanalysis()
-#    elif st.session_state.active_page == 'Competition Analysis':
-#        companalysis()
-#    elif st.session_state.active_page == 'Customer Analysis':
-#        customeranalysis()
-#    elif st.session_state.active_page == 'AI Chatbot':
-#        chatbot()
-#    elif st.session_state.active_page == 'About Us':
-#        aboutus()
+    elif st.session_state.active_page == 'Brand Analysis':
+        brandanalysis()
+    elif st.session_state.active_page == 'Competition Analysis':
+        companalysis()
+    elif st.session_state.active_page == 'Customer Analysis':
+        customeranalysis()
+    elif st.session_state.active_page == 'AI Chatbot':
+        chatbot()
+    elif st.session_state.active_page == 'About Us':
+        aboutus()
 
 
 if __name__ == '__main__':
