@@ -1,6 +1,9 @@
 import streamlit as st
 import os, sys
 import pandas as pd
+from pathlib import Path
+
+csv_path = Path(__file__).parents[1] / 'data/preprocessed/lemmatized_brand_kw_count.csv'
 
 #rootpath = os.path.join(os.getcwd(), '..')
 #sys.path.append(rootpath)
@@ -53,6 +56,7 @@ def brandanalysis(df):
     with left_bottom:
         if brand_name is not None:
 
+            df = pd.read_csv(csv_path)
             brand_name_list = []
             brand_name_list.append(brand_name)
 
@@ -72,5 +76,4 @@ def brandanalysis(df):
             st.markdown(brand_analysis_info[brand_name])
 
 if __name__ == '__main__':
-    df = pd.read_csv('../data/preprocessed/lemmatized_brand_kw_count.csv')
-    brandanalysis(df)
+    brandanalysis()

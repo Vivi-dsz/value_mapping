@@ -32,8 +32,7 @@ def main():
     if st.session_state.active_page == 'Welcome':
         welcome()
     elif st.session_state.active_page == 'Brand Analysis':
-        df = pd.read_csv('./data/preprocessed/lemmatized_brand_kw_count.csv')
-        brandanalysis(df)
+        brandanalysis()
     elif st.session_state.active_page == 'Competition Analysis':
         companalysis()
     elif st.session_state.active_page == 'Customer Analysis':
