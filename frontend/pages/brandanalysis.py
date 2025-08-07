@@ -1,7 +1,7 @@
 import streamlit as st
 import os, sys
 
-rootpath = os.path.join(os.getcwd(), '..')
+rootpath = os.path.join(os.getcwd(), '..', '..')
 sys.path.append(rootpath)
 
 from modules.navbar import navbar
