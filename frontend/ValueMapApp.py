@@ -1,5 +1,5 @@
 import streamlit as st
-from modules.navbar import navbar 
+from modules.navbar import navbar
 from pages.welcome import welcome
 from pages.brandanalysis import brandanalysis
 from pages.companalysis import companalysis
@@ -12,13 +12,13 @@ def main():
     st.session_state.update(st.session_state)
 
     #--- Initialize session_state
-    #if 'active_page' not in st.session_state:
-    #    st.session_state.active_page = 'Welcome'
-    #    st.session_state['chosen_brand'] = None
+    if 'active_page' not in st.session_state:
+        st.session_state.active_page = 'Welcome'
+        st.session_state['chosen_brand'] = None
 
     # Get current values of states
-    #st.session_state.active_page = st.session_state.active_page
-    #st.session_state['chosen_brand'] = st.session_state['chosen_brand']
+    st.session_state.active_page = st.session_state.active_page
+    st.session_state['chosen_brand'] = st.session_state['chosen_brand']
 
     st.set_page_config(
         page_title="Value Mapping",

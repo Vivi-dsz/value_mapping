@@ -2,7 +2,7 @@ import streamlit as st
 import os, sys
 import pandas as pd
 
-rootpath = os.path.join(os.getcwd(), '..', '..')
+rootpath = os.path.join(os.getcwd(), '..')
 sys.path.append(rootpath)
 user_reviews_data = os.path.join(rootpath, 'data/raw/', 'user_reviews_10k_v02.csv')
 user_reviews_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'kw_counted_user_reviews_v01.csv')
