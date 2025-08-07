@@ -73,8 +73,8 @@ def aboutus():
 
     ]
 
-    image = Image.open('vividsz.jpg')
-    st.image(image, width=150)
+    # image = Image.open('vividsz.jpg')
+    st.image('vividsz.jpg', width=150)
 
     # # Layout 2x2
     # def chunk_list(lst, n):
