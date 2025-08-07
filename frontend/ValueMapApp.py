@@ -1,6 +1,6 @@
 import streamlit as st
 from modules.navbar import navbar 
-#from pages.welcome import welcome
+from pages.welcome import welcome
 #from pages.brandanalysis import brandanalysis
 #from pages.companalysis import companalysis
 #from pages.customeranalysis import customeranalysis
@@ -38,12 +38,11 @@ def main():
     - AI-driven brand strategy assistant
     """)
 
-    st.sidebar()
 
-#    navbar()
+    navbar()
     #--- Run the active page
-#    if st.session_state.active_page == 'Welcome':
-#        welcome()
+    if st.session_state.active_page == 'Welcome':
+        welcome()
 #    elif st.session_state.active_page == 'Brand Analysis':
 #        brandanalysis()
 #    elif st.session_state.active_page == 'Competition Analysis':
