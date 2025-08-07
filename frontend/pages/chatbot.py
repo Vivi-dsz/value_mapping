@@ -1,10 +1,9 @@
 import streamlit as st
 import os, sys
 import pandas as pd
+from pathlib import Path
 
-rootpath = os.path.join(os.getcwd(), '..')
-sys.path.append(rootpath)
-review_merged_data = os.path.join(rootpath, 'data/preprocessed/', 'merged_review_topics_v01.csv')
+review_merged_data = Path(__file__).parents[1] / 'data/preprocessed/merged_review_topics_v01.csv'
 
 from modules.navbar import navbar
 from backend.models.agent import *

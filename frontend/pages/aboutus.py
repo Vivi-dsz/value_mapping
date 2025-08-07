@@ -1,9 +1,9 @@
 import streamlit as st
 import sys, os
 from modules.navbar import navbar
+from pathlib import Path
 
-rootpath = os.path.join(os.getcwd())
-imagepath = rootpath + "/modules/images/"
+imagepath = Path(__file__).parents[1] / '/modules/images/'
 
 def aboutus():
     st.session_state.update(st.session_state)

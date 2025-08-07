@@ -1,12 +1,13 @@
 import streamlit as st
 import os, sys
+import pandas as pd
+from pathlib import Path
 
-rootpath = os.path.join(os.getcwd(), '..')
-sys.path.append(rootpath)
+lemmatized_brand_kw_data = Path(__file__).parents[1] / 'data/preprocessed/lemmatized_brand_kw_count.csv'
 
 from modules.navbar import navbar
 from modules.brandcompareinfo import brand_comparison_info
-from backend.visualization.get_kw_count_df import get_kw_count_df
+## from backend.visualization.get_kw_count_df import get_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
 from data.raw.brands_about_us import brand_text
 from backend.visualization.kw_count_polar_plot import kw_count_polar_plot
@@ -63,7 +64,7 @@ def companalysis():
             )
 
             if brands_to_compare is not None:
-                df = get_kw_count_df(kw_dict, brand_text)
+                df = pd.read_csv(lemmatized_brand_kw_data)
                 brands_to_compare.append(brand_name)
                 fig = kw_count_polar_plot(df, kw_dict, brand_text, brand_name_list=brands_to_compare)
                 st.plotly_chart(fig)

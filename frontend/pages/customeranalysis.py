@@ -1,12 +1,11 @@
 import streamlit as st
 import os, sys
 import pandas as pd
+from pathlib import Path
 
-rootpath = os.path.join(os.getcwd(), '..')
-sys.path.append(rootpath)
-user_reviews_data = os.path.join(rootpath, 'data/raw/', 'user_reviews_10k_v02.csv')
-user_reviews_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'kw_counted_user_reviews_v01.csv')
-user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'final_reviews_with_topics_and_sentiment.csv')
+user_reviews_processed_data = Path(__file__).parents[1] / 'data/preprocessed/kw_counted_user_reviews_v01.csv'
+user_reviews_sentiment_data = Path(__file__).parents[1] / 'data/preprocessed/final_reviews_with_topics_and_sentiment.csv'
+
 
 from modules.navbar import navbar
 from modules.brandcustomerinfo import brand_customer_info
