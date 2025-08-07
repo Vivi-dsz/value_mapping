@@ -4,6 +4,8 @@ import pandas as pd
 from pathlib import Path
 
 review_merged_data = Path(__file__).parents[1] / 'data/preprocessed/merged_review_topics_v01.csv'
+ai_brand_kw_data = Path(__file__).parents[1] / 'data/preprocessed/ai_brand_kw_count.csv'
+ai_review_kw_data = Path(__file__).parents[1] / 'data/preprocessed/ai_review_kw_count.csv'
 
 from modules.navbar import navbar
 from backend.models.agent import *
@@ -29,13 +31,14 @@ def chatbot():
 
     review_merged_df = pd.read_csv(review_merged_data)
 
-    @st.cache_data
-    def load_keyword_dfs():
-        brand_kw_df = get_brand_counts(brand_text, keywords)
-        review_kw_df = get_review_counts(review_merged_df, keywords)
-        return brand_kw_df, review_kw_df
+    # @st.cache_data
+    # def load_keyword_dfs():
+    #    brand_kw_df = get_brand_counts(brand_text, keywords)
+    #    review_kw_df = get_review_counts(review_merged_df, keywords)
+    #    return brand_kw_df, review_kw_df
 
-    brand_kw_df, review_kw_df = load_keyword_dfs()
+    brand_kw_df = pd.read_csv(ai_brand_kw_data)
+    review_kw_df = pd.read_csv(ai_review_kw_data)
 
     # Streamlit app setup
     st.title("💬 Brand Strategy Assistant")
