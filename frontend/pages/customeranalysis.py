@@ -8,8 +8,8 @@ user_reviews_data = os.path.join(rootpath, 'data/raw/', 'user_reviews_10k_v02.cs
 user_reviews_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'kw_counted_user_reviews_v01.csv')
 user_reviews_sentiment_data = os.path.join(rootpath, 'data/preprocessed/', 'final_reviews_with_topics_and_sentiment.csv')
 
-from frontend.modules.navbar import navbar
-from frontend.modules.brandcustomerinfo import brand_customer_info
+from modules.navbar import navbar
+from modules.brandcustomerinfo import brand_customer_info
 from backend.visualization.get_kw_count_df import get_kw_count_df
 # from backend.visualization.get_user_kw_count_df import get_user_kw_count_df
 from data.raw.kw_topics_v1 import kw_dict
