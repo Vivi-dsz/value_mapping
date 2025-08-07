@@ -4,10 +4,10 @@ from modules.navbar import navbar
 from pathlib import Path
 from PIL import Image
 
-imagepath_vivi = Path(__file__).parents[1] / '/modules/images/vividsz.jpg'
-imagepath_ibraeksi = Path(__file__).parents[1] / '/modules/images/ibraeksi.jpg'
-imagepath_gilmali = Path(__file__).parents[1] / '/modules/images/gilmali.png'
-imagepath_elnroshan = Path(__file__).parents[1] / '/modules/images/elnroshan.jpg'
+imagepath_vivi = Path(__file__).parents[0] / '/modules/images/vividsz.jpg'
+imagepath_ibraeksi = Path(__file__).parents[0] / '/modules/images/ibraeksi.jpg'
+imagepath_gilmali = Path(__file__).parents[0] / '/modules/images/gilmali.png'
+imagepath_elnroshan = Path(__file__).parents[0] / '/modules/images/elnroshan.jpg'
 
 def aboutus():
     st.session_state.update(st.session_state)
