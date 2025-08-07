@@ -27,8 +27,6 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-
-    navbar()
     #--- Run the active page
     if st.session_state.active_page == 'Welcome':
         welcome()
