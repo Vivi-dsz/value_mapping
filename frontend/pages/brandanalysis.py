@@ -20,7 +20,7 @@ def refresh_competitors():
     competitors = [x for x in allbrands if x != brand_name]
     st.session_state['chosen_competitors'] = competitors
 
-def brandanalysis():
+def brandanalysis(df):
     st.session_state.update(st.session_state)
 
     navbar()
@@ -52,8 +52,6 @@ def brandanalysis():
 
     with left_bottom:
         if brand_name is not None:
-
-            df = pd.read_csv('./lemmatized_brand_kw_count.csv')
 
             brand_name_list = []
             brand_name_list.append(brand_name)
