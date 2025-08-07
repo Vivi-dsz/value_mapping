@@ -3,7 +3,7 @@ import sys, os
 from modules.navbar import navbar
 from pathlib import Path
 
-imagepath_vivi = Path(__file__).parents[1] / '/modules/images/vivi-dsz.jpg'
+imagepath_vivi = Path(__file__).parents[1] / '/modules/images/vividsz.jpg'
 imagepath_ibraeksi = Path(__file__).parents[1] / '/modules/images/ibraeksi.jpg'
 imagepath_gilmali = Path(__file__).parents[1] / '/modules/images/gilmali.png'
 imagepath_elnroshan = Path(__file__).parents[1] / '/modules/images/elnroshan.jpg'
