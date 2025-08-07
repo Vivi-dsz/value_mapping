@@ -36,7 +36,8 @@ def aboutus():
             """Vivien did her Master’s degree in Management and worked at the intersection of business and tech
             - as Managing Director of a spin-off of a strategy consultancy.""",
             "github": "https://github.com/Vivi-dsz",
-            "linkedin": "https://www.linkedin.com/in/vivien-daszkowski/"
+            "linkedin": "https://www.linkedin.com/in/vivien-daszkowski/",
+            "count": 0
         },
         {
             "title": "Chief Technology Officer (CTO)",
@@ -46,7 +47,8 @@ def aboutus():
             "Real-World Role":
             """Ibrahim is a Mechanical Engineer with 6 years of experience in vehicle safety simulations followed by 2+ years experience as a data analyst.""",
             "github": "https://github.com/ibraeksi",
-            "linkedin": "https://www.linkedin.com/in/ibrahim-eksi/"
+            "linkedin": "https://www.linkedin.com/in/ibrahim-eksi/",
+            "count": 1
         },
         {
             "title": "Chief Product Officer (CPO)",
@@ -57,7 +59,8 @@ def aboutus():
             """Liana is a Product Manager with 8 years experience in building and scaling Customer facing Products across 18 countries
             and complex cross-functional teams.""",
             "github": "https://github.com/gilmali",
-            "linkedin": "https://www.linkedin.com/in/ligilmanova/"
+            "linkedin": "https://www.linkedin.com/in/ligilmanova/",
+            "count": 2
         },
         {
             "title": "Chief Innovation Officer (CIO)",
@@ -68,7 +71,8 @@ def aboutus():
             """Elnaz is a Climate Economics with 10+ years of experience in evaluating climate transition
             forward-looking optimization modeling, and leading small teams.""",
             "github": "https://github.com/elnroshan",
-            "linkedin": "https://www.linkedin.com/in/elnaz-roshan/"
+            "linkedin": "https://www.linkedin.com/in/elnaz-roshan/",
+            "count": 3
         },
 
     ]
@@ -86,7 +90,7 @@ def aboutus():
             with cols[idx]:
                 left, right = st.columns([2, 4], vertical_alignment="top")
                 with left:
-                    image = Image.open(imagelist[idx])
+                    image = Image.open(imagelist[member['count']])
                     st.image(image, width=150)
                 with right:
                     st.markdown(f"## {member['name']}")
