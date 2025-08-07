@@ -73,35 +73,32 @@ def aboutus():
 
     ]
 
-    #image = Image.open(imagepath_vivi)
-    st.image(imagepath_vivi, width=150)
+    # Layout 2x2
+    def chunk_list(lst, n):
+        for i in range(0, len(lst), n):
+            yield lst[i:i + n]
 
-    # # Layout 2x2
-    # def chunk_list(lst, n):
-    #     for i in range(0, len(lst), n):
-    #         yield lst[i:i + n]
+    # Display in 2x2 layout
+    for row in chunk_list(team, 2):
+        cols = st.columns(2)
+        for idx, member in enumerate(row):
+            st.empty()
+            with cols[idx]:
+                left, right = st.columns([2, 4], vertical_alignment="top")
+                with left:
+                    image = Image.open(imagelist[idx])
+                    st.image(image, width=150)
+                with right:
+                    st.markdown(f"## {member['name']}")
+                    st.markdown(f"###### :rainbow[{member['title']}]")
+                    st.markdown(f"[GitHub]({member['github']}) | [LinkedIn]({member['linkedin']})")
 
-    # # Display in 2x2 layout
-    # for row in chunk_list(team, 2):
-    #     cols = st.columns(2)
-    #     for idx, member in enumerate(row):
-    #         st.empty()
-    #         with cols[idx]:
-    #             left, right = st.columns([2, 4], vertical_alignment="top")
-    #             with left:
-    #                 image = Image.open(imagelist[idx])
-    #                 st.image(image, width=150)
-    #             with right:
-    #                 st.markdown(f"## {member['name']}")
-    #                 st.markdown(f"###### :rainbow[{member['title']}]")
-    #                 st.markdown(f"[GitHub]({member['github']}) | [LinkedIn]({member['linkedin']})")
+                st.markdown("**In-Project Role**")
+                st.write(member["In-Project Role"])
 
-    #             st.markdown("**In-Project Role**")
-    #             st.write(member["In-Project Role"])
-
-    #             st.markdown("**Real-World Role**")
-    #             st.write(member["Real-World Role"])
-    #             st.write("         ")
+                st.markdown("**Real-World Role**")
+                st.write(member["Real-World Role"])
+                st.write("         ")
 
 if __name__ == '__main__':
     aboutus()
