@@ -2,10 +2,10 @@ import streamlit as st
 import os, sys
 import pandas as pd
 
-rootpath = os.path.join(os.getcwd(), '..')
-sys.path.append(rootpath)
+#rootpath = os.path.join(os.getcwd(), '..')
+#sys.path.append(rootpath)
 
-brand_processed_data = os.path.join(rootpath, 'data/preprocessed/', 'lemmatized_brand_kw_count.csv')
+brand_processed_data = os.path.join('data/preprocessed/', 'lemmatized_brand_kw_count.csv')
 
 from modules.navbar import navbar
 from modules.companydesc import companydesc
