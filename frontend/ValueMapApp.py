@@ -38,6 +38,8 @@ def main():
     - AI-driven brand strategy assistant
     """)
 
+    st.sidebar()
+
 #    navbar()
     #--- Run the active page
 #    if st.session_state.active_page == 'Welcome':
