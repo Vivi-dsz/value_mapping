@@ -4,7 +4,7 @@ from modules.navbar import navbar
 from pathlib import Path
 from PIL import Image
 
-imagepath_vivi = 'vividsz.jpg'
+imagepath_vivi = Path(__file__).parents[1] / 'vividsz.jpg'
 imagepath_ibraeksi = 'ibraeksi.jpg'
 imagepath_gilmali = 'gilmali.png'
 imagepath_elnroshan = 'elnroshan.jpg'
@@ -73,8 +73,8 @@ def aboutus():
 
     ]
 
-    # image = Image.open('vividsz.jpg')
-    st.image('vividsz.jpg', width=150)
+    image = Image.open(imagepath_vivi)
+    st.image(image, width=150)
 
     # # Layout 2x2
     # def chunk_list(lst, n):
