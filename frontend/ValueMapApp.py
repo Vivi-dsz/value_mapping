@@ -1,11 +1,11 @@
 import streamlit as st
 from modules.navbar import navbar 
-from pages.welcome import welcome
-from pages.brandanalysis import brandanalysis
-from pages.companalysis import companalysis
-from pages.customeranalysis import customeranalysis
-from pages.chatbot import chatbot
-from pages.aboutus import aboutus
+from pages.1_welcome import welcome
+from pages.2_brandanalysis import brandanalysis
+from pages.3_companalysis import companalysis
+from pages.4_customeranalysis import customeranalysis
+from pages.5_chatbot import chatbot
+from pages.6_aboutus import aboutus
 
 
 def main():
