@@ -2,7 +2,7 @@ import os, sys
 import pandas as pd
 from pathlib import Path
 
-user_reviews_sentiment_data = Path(__file__).parents[1] / 'data/preprocessed/final_reviews_with_topics_and_sentiment.csv'
+user_reviews_sentiment_data = Path(__file__).parents[2] / 'data/preprocessed/final_reviews_with_topics_and_sentiment.csv'
 user_reviews_sentiment_df=pd.read_csv(user_reviews_sentiment_data)
 
 import openai
