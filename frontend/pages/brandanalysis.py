@@ -5,7 +5,7 @@ import pandas as pd
 #rootpath = os.path.join(os.getcwd(), '..')
 #sys.path.append(rootpath)
 
-brand_processed_data = os.path.join('lemmatized_brand_kw_count.csv')
+#brand_processed_data = os.path.join('../lemmatized_brand_kw_count.csv')
 
 from modules.navbar import navbar
 from modules.companydesc import companydesc
@@ -53,7 +53,7 @@ def brandanalysis():
     with left_bottom:
         if brand_name is not None:
 
-            df = pd.read_csv(brand_processed_data)
+            df = pd.read_csv('../lemmatized_brand_kw_count.csv')
 
             brand_name_list = []
             brand_name_list.append(brand_name)
