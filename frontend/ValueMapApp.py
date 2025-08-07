@@ -1,10 +1,10 @@
 import streamlit as st
-from pages.welcome import welcome
-from pages.brandanalysis import brandanalysis
-from pages.companalysis import companalysis
-from pages.customeranalysis import customeranalysis
-from pages.chatbot import chatbot
-from pages.aboutus import aboutus
+# from pages.welcome import welcome
+# from pages.brandanalysis import brandanalysis
+# from pages.companalysis import companalysis
+# from pages.customeranalysis import customeranalysis
+# from pages.chatbot import chatbot
+# from pages.aboutus import aboutus
 
 
 def main():
@@ -26,19 +26,18 @@ def main():
         initial_sidebar_state="expanded"
     )
 
-    #--- Run the active page
-    if st.session_state.active_page == 'Welcome':
-        welcome()
-    elif st.session_state.active_page == 'Brand Analysis':
-        brandanalysis()
-    elif st.session_state.active_page == 'Competition Analysis':
-        companalysis()
-    elif st.session_state.active_page == 'Customer Analysis':
-        customeranalysis()
-    elif st.session_state.active_page == 'AI Chatbot':
-        chatbot()
-    elif st.session_state.active_page == 'About Us':
-        aboutus()
+    # if st.session_state.active_page == 'Welcome':
+    #     welcome()
+    # elif st.session_state.active_page == 'Brand Analysis':
+    #     brandanalysis()
+    # elif st.session_state.active_page == 'Competition Analysis':
+    #     companalysis()
+    # elif st.session_state.active_page == 'Customer Analysis':
+    #     customeranalysis()
+    # elif st.session_state.active_page == 'AI Chatbot':
+    #     chatbot()
+    # elif st.session_state.active_page == 'About Us':
+    #     aboutus()
 
 if __name__ == '__main__':
     main()
